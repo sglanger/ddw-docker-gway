@@ -1,2 +1,8 @@
 Project: ddw-docker-gway
 
+Outstanding work items 7 Jan 2016:
+a) mirth still not autheticating to postgresql
+b) then have to get ddw-gw talking to ddw-db
+
+
+
