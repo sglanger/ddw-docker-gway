@@ -12,7 +12,7 @@ MAINTAINER Steve Langer <sglanger@bluebottle.COM>
 
 # standard tools
 ADD service-start.sh /docker-entrypoint-initdb.d/service-start.sh
-ADD mirthdb.sql /docker-entrypoint-initdb.d/mirthdb.sql
+ADD ddw-gway-MirthBackup.xml /docker-entrypoint-initdb.d/ddw-gway-MirthBackup.xml
 RUN chmod 777 /docker-entrypoint-initdb.d/service-start.sh
 RUN apt-get update && apt-get -y install nano
 ENV TERM xterm
