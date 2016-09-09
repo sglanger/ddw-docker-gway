@@ -1,5 +1,10 @@
 Project: ddw-docker-gway
 
+Purpose:
+This is the MIRTH gway (one of N) that gets DICOM studies,
+parses their headers and sends selected data to the DDW 
+PostgreSQL running on the Docker ddw-db
+
 Outstanding work items 7 Jan 2016:
 a) mirth still not autheticating to postgresql
 b) then have to get ddw-gw talking to ddw-db
