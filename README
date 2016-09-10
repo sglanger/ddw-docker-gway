@@ -1,11 +1,21 @@
 Project: ddw-docker-gway
+Associated Projects: ddw-docker-dbase
+
+This project is in response to several requests from DDW users that the learning curve of that system was a bit steep. So in the Docker version of DDW we take a more modular and turn-key approach. There is one Docker (ddw-docker-dbase) that hosts the main Postgresql dbase that the DDW gatways will send their results to. There will be another companion Docker (ddw-docker-gway) that will bundle MIRTH as a service, pointing its results to ddw-dbase. 
 
 Purpose:
 This is the MIRTH gway (one of N) that gets DICOM studies,
 parses their headers and sends selected data to the DDW 
 PostgreSQL running on the Docker ddw-db
 
-Outstanding work items 7 Jan 2016:
+Herein are the following ddw-dbase components
+a) Dockerfile 		  (the main build file for the docker)
+b) mirth.sql 	      (stub schema for MIRTH to connect to)
+c) service-start.sh 	(for provisioning the docker)
+d) run_ddw_db.sh	(a convenience script for automating the build/run/provision cycle)
+e) this README
+
+Outstanding work items Sept 2016:
 a) mirth still not autheticating to postgresql
 b) then have to get ddw-gw talking to ddw-db
 
