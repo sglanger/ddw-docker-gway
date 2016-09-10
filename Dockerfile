@@ -2,7 +2,7 @@ FROM postgres:9.2
 
 MAINTAINER Steve Langer <sglanger@fastmail.COM>
 ###############################################################
-# docker-DDW-GWAY
+# ddw-docker-GWAY
 # Purpose: SGL extensions to postgresql for DDW
 # 	inspired by 	https://docs.docker.com/engine/examples/postgresql_service/
 # 	and 		https://hub.docker.com/_/postgres/
