@@ -7,11 +7,11 @@ Purpose:
 This is the MIRTH gway (one of N) that gets DICOM studies, parses their headers and sends selected data to the DDW PostgreSQL running on the Docker ddw-dbase
 
 Herein are the following ddw-dbase components
-a) Dockerfile 		  (the main build file for the docker)
-b) mirthdb.sql 	      (stub schema for MIRTH to connect to)
+a) Dockerfile 		    (the main build file for the docker)
+b) mirthdb.sql 	      (stub schema for MIRTH to connect to on Postgres)
 c) service-start.sh 	(for provisioning the docker)
 d) run_ddw_db.sh	    (a convenience script for automating the build/run/provision cycle)
-e) mirth.properties.psql  (to replace the default Mirth reliance on Derby and point ot Postgres)
+e) mirth.properties.psql  (to replace the default Mirth reliance on Derby and point to Postgres)
 f) this README
 
 Outstanding work items Sept 2016:
