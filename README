@@ -10,8 +10,8 @@ Herein are the following ddw-dbase components
 a) Dockerfile 		  (the main build file for the docker)
 b) mirthdb.sql 	      (stub schema for MIRTH to connect to)
 c) service-start.sh 	(for provisioning the docker)
-d) run_ddw_db.sh	(a convenience script for automating the build/run/provision cycle)
-e) mirth.properties.pgql  (to replace the default Mirth reliance on Derby and point ot Postgres)
+d) run_ddw_db.sh	    (a convenience script for automating the build/run/provision cycle)
+e) mirth.properties.psql  (to replace the default Mirth reliance on Derby and point ot Postgres)
 f) this README
 
 Outstanding work items Sept 2016:
