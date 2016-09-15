@@ -59,6 +59,10 @@ RUN echo "host all  all    0.0.0.0/0  trust" >> /etc/postgresql/9.2/main/pg_hba.
 RUN echo "host all  all    127.0.0.1/32 trust" >> /etc/postgresql/9.2/main/pg_hba.conf
 RUN echo "local all  all    trust" >> /etc/postgresql/9.2/main/pg_hba.conf
 
+RUN echo "mirthdb	root		postgres" >> /etc/postgresql/9.2/main/pg_ident.conf
+RUN echo "mirthdb	postgres	postgres" >> /etc/postgresql/9.2/main/pg_ident.conf
+
+
 # STEP 21: And add ``listen_addresses`` to ``/etc/postgresql/9.2/main/postgresql.conf``
 RUN echo "listen_addresses = '*'" >> /etc/postgresql/9.2/main/postgresql.conf
 

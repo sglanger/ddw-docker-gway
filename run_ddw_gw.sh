@@ -6,13 +6,13 @@
 #	ddw-gway in one easy place
 #
 # Notes: If you are building from scratch, run this whole thing
-#	If pulling from Docker hub, jusr run the RUN and EXEC lines
+#	If pulling from Docker hub, just run the RUN and EXEC lines
 ##########################################
 
 # first clean up if any running instance
 # Comment out the rmi line if you really don't want to rebuild the docker
 sudo docker stop ddw-gw
-sudo docker rmi -f ddw-gway
+#sudo docker rmi -f ddw-gway
 sudo docker rm ddw-gw
 
 
