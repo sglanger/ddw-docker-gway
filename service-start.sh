@@ -11,3 +11,4 @@ cp /usr/local/mirth/conf/mirth.properties /usr/local/mirth/conf/mirth.properties
 ###cp /usr/local/mirth/conf/mirth.properties.new /usr/local/mirth/conf/mirth.properties
 
 service mcservice start
+
