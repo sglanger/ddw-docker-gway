@@ -22,22 +22,39 @@
 # Caller: user
 ###############################
 clear
+host="127.0.0.1"
+image="ddw-gway"
+instance="ddw-gw"
 
 case "$1" in
 	build)
 		# first clean up if any running instance
 		# Comment out the rmi line if you really don't want to rebuild the docker
-		sudo docker stop ddw-gw
-		sudo docker rmi -f ddw-gway
-		sudo docker rm ddw-gw
+		sudo docker stop $instance
+		sudo docker rmi -f $image
+		sudo docker rm $instance
 
-		# now build from clean. The DOcker run line uses --net="host" term to expose the docker ports
-		# on the Host's NIC. For better security, remove it
-		sudo docker build --rm=true -t ddw-gway .
-		sudo docker run --net="host" --name ddw-gw -e POSTGRES_PASSWORD=postgres -d ddw-gway
+		# now build from clean. The DOcker run line uses --net="host" term to expose all the docker ports
+		# on the Host's NIC. For better security, remove it. But then must do work shown in case "start"
+		sudo docker build --rm=true -t $image .
+		sudo docker run --net="host" --name $instance -e POSTGRES_PASSWORD=postgres -d $image
 		sleep 3
 		sudo docker ps
-		sudo docker exec -u root ddw-gw /docker-entrypoint-initdb.d/service-start.sh
+		sudo docker exec -u root $instance /docker-entrypoint-initdb.d/service-start.sh
+	;;
+
+	conn)
+		sudo docker exec -it $instance /bin/bash 
+	;;
+
+
+	conn_r)
+		sudo docker exec -u root -it $instance /bin/bash
+	;;
+
+	restart)
+		$0 stop
+		$0 start
 	;;
 
 	status)
@@ -47,21 +64,25 @@ case "$1" in
 
 	stop)
 		# stops but does not remove image from DOcker engine
-		sudo docker stop ddw-gw
-		sudo docker rm ddw-gw
+		sudo docker stop $instance
+		sudo docker rm $instance
 	;;
 
 	start)
-		sudo docker run --net="host" --name ddw-gw -e POSTGRES_PASSWORD=postgres -d ddw-gway
+		# here we launch DOcker w/out the --net="host" tag , but then no ports are exposed including 104
+		# so we expose them one at a time with -p switches on the container address
+		host=$(sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}' $instance)
+		# the trick is to know the IP before the docker is created, and yes it is a trick
+		sudo docker run -p $host:8080:8080 -p $host:8443:8443 -p $host:10004:104 --name $instance -e POSTGRES_PASSWORD=postgres -d $image
 		sleep 3
 		sudo docker ps
-		sudo docker exec -u root ddw-gw /docker-entrypoint-initdb.d/service-start.sh
+		#sudo docker exec -u root $instance /docker-entrypoint-initdb.d/service-start.sh
 	;;
 
 
 	*)
 		echo "invalid option"
-		echo "valid options: build/start/stop/status"
+		echo "valid options: build/start/stop/status/conn"
 		exit
 	;;
 esac

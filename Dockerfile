@@ -29,6 +29,7 @@ RUN apt-get -y install ssh
 ########################## now install mirth 
 # see http://www.mirthproject.org/community/forums/showthread.php?t=5077
 #
+RUN mkdir /mnt/dcm
 RUN mkdir /usr/local/mirth
 RUN apt-get -y install default-jre
 RUN apt-get -y install curl
@@ -68,7 +69,7 @@ RUN echo "listen_addresses = '*'" >> /etc/postgresql/9.2/main/postgresql.conf
 # STEP 22: Expose ports (DICOM, MIRTH)
 EXPOSE 104
 EXPOSE 8443
-EXPOSE 8081
+EXPOSE 8080
 
 # from https://docs.docker.com/engine/examples/postgresql_service
 # sudo docker run --volumes-from ddw-gw -t -i busybox sh
